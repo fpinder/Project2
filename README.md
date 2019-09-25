@@ -1,10 +1,10 @@
 # Project2
-*eatsDB*
 
+```
 Author(s)
 Frank Pinder
 Gulliver Timoteo
-Toneth Tembrevilla 
+Toneth Tembrevilla
 Description
 
 eatsDB app will served as a digital recipe book for filipino foods
@@ -32,3 +32,4 @@ Travis CI
 
 Deployment
 Heroku
+```
