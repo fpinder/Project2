@@ -7,31 +7,30 @@ Author(s)
 Frank Pinder
 Gulliver Timoteo
 Toneth Tembrevilla
-Description
 
+**Description**
 eatsDB app will served as a digital recipe book for filipino foods
 
 
-Technologies Used
-
+**Technologies Used**
 Front-end
 Bootstrap
 Handlebars
 
 
-Back-end
+**Back-end**
 Nodejs
 Express
 Sequelize
 --Passport
 
-Database
+**Database**
 MysQl
 --postgre
 
-Testing
+**Testing**
 Travis CI
 
-Deployment
+**Deployment**
 Heroku
 ```
