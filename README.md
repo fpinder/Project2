@@ -1,14 +1,14 @@
 # Project2
 
 ```
-**eatsDB**
+`eatsDB`
 
 Author(s)
 Frank Pinder
 Gulliver Timoteo
 Toneth Tembrevilla
 
-**Description**
+`Description`
 eatsDB app will served as a digital recipe book for filipino foods
 
 
