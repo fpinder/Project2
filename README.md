@@ -1,6 +1,8 @@
 # Project2
 
 ```
+**eatsDB**
+
 Author(s)
 Frank Pinder
 Gulliver Timoteo
