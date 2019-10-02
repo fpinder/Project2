@@ -1,47 +1,47 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $FoodText = $("#Food-text");
+var $FoodDescription = $("#Food-description");
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+var $FoodList = $("#Food-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveFood: function(Food) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/Foods",
+      data: JSON.stringify(Food)
     });
   },
-  getExamples: function() {
+  getFoods: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/Foods",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteFood: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/Foods/" + id,
       type: "DELETE"
     });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+// refreshFoods gets new Foods from the db and repopulates the list
+var refreshFoods = function() {
+  API.getFoods().then(function(data) {
+    var $Foods = data.map(function(Food) {
       var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+        .text(Food.text)
+        .attr("href", "/Food/" + Food.id);
 
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": example.id
+          "data-id": Food.id
         })
         .append($a);
 
@@ -54,46 +54,46 @@ var refreshExamples = function() {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $FoodList.empty();
+    $FoodList.append($Foods);
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new Food
+// Save the new Food to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var Food = {
+    text: $FoodText.val().trim(),
+    description: $FoodDescription.val().trim()
   };
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!(Food.text && Food.description)) {
+    alert("You must enter an Food text and description!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  API.saveFood(Food).then(function() {
+    refreshFoods();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $FoodText.val("");
+  $FoodDescription.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
+// handleDeleteBtnClick is called when an Food's delete button is clicked
+// Remove the Food from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deleteFood(idToDelete).then(function() {
+    refreshFoods();
   });
 };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$FoodList.on("click", ".delete", handleDeleteBtnClick);
