@@ -1,5 +1,5 @@
 var db = require("../models");
-// var router = express.router();
+// var router = express.Router();
 var express = require("express");
 
 module.exports = function(app) {
@@ -12,15 +12,6 @@ module.exports = function(app) {
       res.render("index", hbsObject);
     });
   });
-
-  // Load example page and pass in an example by id
-  // app.get("/example/:id", function(req, res) {
-  //   db.Food.findOne({ where: { id: req.params.id } }).then(function(dbFood) {
-  //     res.render("food", {
-  //       food: dbFood
-  //     });
-  //   });
-  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
