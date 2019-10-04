@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
-module.exports = function(sequelize, DataTypes) {
+var Sequelize = require("sequelize");
+
+module.exports = function (sequelize, DataTypes) {
   var Food = sequelize.define("Food", {
     id: {
       type: DataTypes.INTEGER,
@@ -14,6 +16,16 @@ module.exports = function(sequelize, DataTypes) {
     food_ing: {
       type: DataTypes.STRING(1000),
       allowNull: false
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
     }
   });
   return Food;
