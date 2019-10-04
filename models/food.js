@@ -1,4 +1,6 @@
 /* eslint-disable camelcase */
+var Sequelize = require("sequelize");
+
 module.exports = function (sequelize, DataTypes) {
   var Food = sequelize.define("Food", {
     id: {
@@ -18,12 +20,12 @@ module.exports = function (sequelize, DataTypes) {
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
     },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
     }
   });
   return Food;

@@ -1,24 +1,26 @@
 var db = require("../models");
+// var router = express.router();
+var express = require("express");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Food.findAll({}).then(function(dbFood) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbFood
-      });
+    db.Food.findAll({}).then(function(data) {
+      var hbsObject = {
+        foods: data
+      };
+      res.render("index", hbsObject);
     });
   });
 
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Food.findOne({ where: { id: req.params.id } }).then(function(dbFood) {
-      res.render("food", {
-        food: dbFood
-      });
-    });
-  });
+  // app.get("/example/:id", function(req, res) {
+  //   db.Food.findOne({ where: { id: req.params.id } }).then(function(dbFood) {
+  //     res.render("food", {
+  //       food: dbFood
+  //     });
+  //   });
+  // });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
