@@ -38,10 +38,10 @@
 #add-food-button {
   margin-top: 15px;
   border-radius: 0;
-  /* float: left; */
+  float: left;
   height: 30px;
   position: absolute;
-  /* right: 10px; */
+  right: 10px;
   /* top: 5px; */
 }
 
