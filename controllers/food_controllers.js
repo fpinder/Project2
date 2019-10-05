@@ -67,3 +67,19 @@ router.put("/api/new/saved/:id", function(req, res) {
     res.redirect("/");
   });
 });
+
+// PUT (update) route which calls Sequelize's update method to mark the food as not yet saved .
+// Sends the id to identify which food.
+router.put("/:id", function(req, res) {
+  var saved = false;
+  var ID = req.params.id;
+
+  db.Food.update(
+    {
+      saved: saved
+    },
+    { where: { id: ID } }
+  ).then(function() {
+    res.redirect("/");
+  });
+});
