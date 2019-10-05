@@ -52,3 +52,18 @@ router.post("/api/new/food", function(req, res) {
     }
   });
 });
+
+// update method to mark that food as saved.
+router.put("/api/new/saved/:id", function(req, res) {
+  var saved = true;
+  var ID = req.params.id;
+
+  db.Food.update(
+    {
+      saved: saved
+    },
+    { where: { id: ID } }
+  ).then(function() {
+    res.redirect("/");
+  });
+});
