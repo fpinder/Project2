@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 // Import routes and give the server access to them.
-var routes = require("./controllers/food_controller.js");
+var routes = require("./controllers/food_controllers.js");
 app.use("/", routes);
 
 // Starting the server, syncing our models ------------------------------------/
