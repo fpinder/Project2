@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "wdp260",
     "database": "foods_db",
     "host": "localhost",
     "dialect": "mysql"

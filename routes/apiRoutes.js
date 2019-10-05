@@ -1,15 +1,16 @@
 var db = require("../models");
 var request = require("request");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Get all examples
-  app.get("/api/foods", function(req, res) {
-    db.Food.findAll({}).then(function(dbFoods) {
+  app.get("/api/foods", function (req, res) {
+    db.Food.findAll({}).then(function (dbFoods) {
       res.json(dbFoods);
     });
   });
 
   // Create a new example
+<<<<<<< HEAD
   router.post("/api/new/food", function(req, res) {
     var foodName = req.body.name;
   
@@ -44,10 +45,16 @@ module.exports = function(app) {
         );
         res.redirect("/");
       }
+=======
+  app.post("/api/foods", function (req, res) {
+    db.Food.create(req.body).then(function (dbFood) {
+      res.json(dbFood);
+>>>>>>> e309894138c2e895ee11cf1751500f0863448e8b
     });
   });
   
 
+<<<<<<< HEAD
   
   // Deleting a food
   
@@ -61,3 +68,16 @@ module.exports = function(app) {
     });
   });
   
+=======
+  // Delete an example by id
+  app.delete("/api/foods/:id", function (req, res) {
+    db.Food.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbFood) {
+      res.json(dbFood);
+    });
+  });
+};
+>>>>>>> e309894138c2e895ee11cf1751500f0863448e8b
