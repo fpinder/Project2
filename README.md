@@ -71,4 +71,8 @@ _This app uses sequelize, Node.js, Mysql and 6 NPM packages: Express, Express-ha
 
 **View Setup:** _`index.handlebars` file used by Handlebars and `index.handlebars` to have the template that Handlebars can render onto_
 
+**SCSS** _is a preprocessor which lets you use features that aren't a part of the wider CSS standard yet, and provides better workflows for maintaining your stylesheets_
+
+**script.babel** _Babel is a JavaScript transpiler (source-to-source compilers) that converts edge JavaScript into plain old ES5 JavaScript that can run in any browser (even the old ones)_
+
 Lincense by <a href="https://creativecommons.org/licenses/by/3.0/" rel="nofollow">CC-BY</a>

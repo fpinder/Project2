@@ -1,3 +1,21 @@
+<header class="header">
+  <div class="row" id="header_text-box">
+    <div class="col-7">
+      <img id="logo" src="">
+      <a href="/">
+        <h1>HOME!
+      </a>
+    </div>
+    <div class="col-5" id="add-food">
+      <form action='/api/foods' method=POST>
+        <input name="name" type="text" class="form-control" id="add-food-input" placeholder="Search food">
+        <button id="add-food-button"><img id="add-food-image" src="assets/images/addBtn.jpg"></button>
+      </form>
+    </div>
+  </div>
+</header>
+
+
 <ul>
   {{#each foods}}
   <li>
