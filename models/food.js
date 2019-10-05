@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+// Import Sequelize library for `Sequelize.literal`.
 var Sequelize = require("sequelize");
 
 module.exports = function (sequelize, DataTypes) {
@@ -16,6 +16,27 @@ module.exports = function (sequelize, DataTypes) {
     food_ing: {
       type: DataTypes.STRING(1000),
       allowNull: false
+    },
+    food_poster: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    food_time: {
+      type: DataTypes.INTEGER(4),
+      allowNull: false
+    },
+    food_cal: {
+      type: DataTypes.INTEGER(4),
+      allowNull: false
+    },
+    share_as: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    saved: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     },
     createdAt: {
       type: DataTypes.DATE,
