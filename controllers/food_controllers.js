@@ -6,24 +6,24 @@ var request = require("request");
 // Import data model.
 var db = require("../models");
 
-router.get("/", function(req, res) {
-  db.Food.findAll({}).then(function(data) {
+router.get("/", function (req, res) {
+  db.Food.findAll({}).then(function (data) {
     var hbsObject = {
       foods: data
     };
-    res.render("index", hbsObject);
+    res.render("home", hbsObject);
   });
 });
 
 // POST route which calls Sequelize's create method with the food name given.
-router.post("/api/new/food", function(req, res) {
+router.post("/api/new/food", function (req, res) {
   var foodName = req.body.name;
 
   var queryUrl =
     "https://api.edamam.com/search?q=" +
     foodName +
     "&app_id=02d84c5e&app_key=446d0c8b75c1140e1812840f84d5117d";
-  request(queryUrl, function(error, response, body) {
+  request(queryUrl, function (error, response, body) {
     if (!error && JSON.parse(body).response !== "False") {
       console.log(JSON.parse(body));
 
@@ -40,7 +40,7 @@ router.post("/api/new/food", function(req, res) {
           food_time: JSON.parse(body).hits[0].recipe.totalTime,
           food_cal: JSON.parse(body).hits[0].recipe.calories,
           share_as: JSON.parse(body).hits[0].recipe.shareAs
-        }).then(function() {
+        }).then(function () {
           res.redirect("/");
         });
       }
@@ -54,44 +54,48 @@ router.post("/api/new/food", function(req, res) {
 });
 
 // update method to mark that food as saved.
-router.put("/api/new/saved/:id", function(req, res) {
+router.put("/api/new/saved/:id", function (req, res) {
   var saved = true;
   var ID = req.params.id;
 
-  db.Food.update(
-    {
-      saved: saved
-    },
-    { where: { id: ID } }
-  ).then(function() {
+  db.Food.update({
+    saved: saved
+  }, {
+    where: {
+      id: ID
+    }
+  }).then(function () {
     res.redirect("/");
   });
 });
 
 // PUT (update) route which calls Sequelize's update method to mark the food as not yet saved .
 // Sends the id to identify which food.
-router.put("/:id", function(req, res) {
+router.put("/:id", function (req, res) {
   var saved = false;
   var ID = req.params.id;
 
-  db.Food.update(
-    {
-      saved: saved
-    },
-    { where: { id: ID } }
-  ).then(function() {
+  db.Food.update({
+    saved: saved
+  }, {
+    where: {
+      id: ID
+    }
+  }).then(function () {
     res.redirect("/");
   });
 });
 
 // Deleting a food recipe from result area
 
-router.delete("/api/new/delete/:id", function(req, res) {
+router.delete("/api/new/delete/:id", function (req, res) {
   var ID = req.params.id;
 
   db.Food.destroy({
-    where: { id: ID }
-  }).then(function() {
+    where: {
+      id: ID
+    }
+  }).then(function () {
     res.redirect("/");
   });
 });
