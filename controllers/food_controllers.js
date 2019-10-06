@@ -6,12 +6,20 @@ var request = require("request");
 // Import data model.
 var db = require("../models");
 
-router.get("/", function (req, res) {
+router.get("/index", function (req, res) {
   db.Food.findAll({}).then(function (data) {
     var hbsObject = {
-      foods: data
+      foods: data,
+      style: "style.css"
     };
-    res.render("home", hbsObject);
+
+    res.render("index", hbsObject);
+  });
+});
+
+router.get("/", function (req, res) {
+  res.render("home", {
+    style: "animation.css"
   });
 });
 
@@ -27,11 +35,11 @@ router.post("/api/new/food", function (req, res) {
     if (!error && JSON.parse(body).response !== "False") {
       console.log(JSON.parse(body));
 
-      if (error) res.redirect("/");
+      if (error) res.redirect("/index");
 
       console.log(JSON.parse(body).q);
       if (!JSON.stringify(response)) {
-        res.redirect("/");
+        res.redirect("/index");
       } else {
         db.Food.create({
           food_name: JSON.parse(body).q,
@@ -41,14 +49,14 @@ router.post("/api/new/food", function (req, res) {
           food_cal: JSON.parse(body).hits[0].recipe.calories,
           share_as: JSON.parse(body).hits[0].recipe.shareAs
         }).then(function () {
-          res.redirect("/");
+          res.redirect("/index");
         });
       }
     } else {
       console.log(
         "\nOops...something went wrong with you food search. Try again..."
       );
-      res.redirect("/");
+      res.redirect("/index");
     }
   });
 });
@@ -65,7 +73,7 @@ router.put("/api/new/saved/:id", function (req, res) {
       id: ID
     }
   }).then(function () {
-    res.redirect("/");
+    res.redirect("/index");
   });
 });
 
@@ -82,7 +90,7 @@ router.put("/:id", function (req, res) {
       id: ID
     }
   }).then(function () {
-    res.redirect("/");
+    res.redirect("/index");
   });
 });
 
@@ -96,7 +104,7 @@ router.delete("/api/new/delete/:id", function (req, res) {
       id: ID
     }
   }).then(function () {
-    res.redirect("/");
+    res.redirect("/index");
   });
 });
 
