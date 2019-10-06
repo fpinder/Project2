@@ -9,11 +9,11 @@
 _The Application [eatsDB](https://safe-fortress-16085.herokuapp.com/) **food-search** is a *open-source* project which uses [Edaman API](https://developer.edamam.com/) to browse and retrieve the nutritional information and brand of any food or meal searched. The API has contains many fuctionalities for example: Nutrition Analysis, Food Database Lookup, Food Entity Extraction, Recipe Licensing, Recipe Search, and Meal Recommendation Engine. The API contains a [Food Database](https://developer.edamam.com/edamam-recipe-api) with over 700,000 foods, restaurant items, fast foods and package foods.
 _
 
-`home handlebars Page` _The home page provide a different page when the individual refresh the page or access the site. Therefore, he/she will see always a new home page or entry page._
+`Home handlebars Page` _The home page provide a different page when the individual refresh the page or access the site. Therefore, he/she will see always a new home page or entry page._
 
 <a href="#"><img src="public\assets\images\home.jpg" alt="Home Page"></a>
 
-`index handlebars Page` _The index page provide access to Edaman site where the search can be completed_
+`Index handlebars Page` _The index page provide access to Edaman site where the search can be completed_
 
 <a href="#"><img src="public\assets\images\eats1.jpg" alt="index Page"></a>
 
