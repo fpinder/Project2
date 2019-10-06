@@ -30,7 +30,10 @@ router.post("/api/new/food", function (req, res) {
   var queryUrl =
     "https://api.edamam.com/search?q=" +
     foodName +
-    "&app_id=02d84c5e&app_key=446d0c8b75c1140e1812840f84d5117d";
+    "&app_id=" + process.env.Ed_app_id + "&app_key=" + process.env.Ed_app_key;
+  console.log("app_id " + process.env.Ed_app_id);
+  console.log("app_key " + process.env.Ed_app_key)
+  console.log(queryUrl)
   request(queryUrl, function (error, response, body) {
     if (!error && JSON.parse(body).response !== "False") {
       console.log(JSON.parse(body));
