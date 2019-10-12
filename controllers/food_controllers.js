@@ -26,42 +26,46 @@ router.get("/", function (req, res) {
 // POST route which calls Sequelize's create method with the food name given.
 router.post("/api/new/food", function (req, res) {
   var foodName = req.body.name;
+  if (!foodName) {
+    console.log("\n ***********SEARCH VALUE EMPTY*********** \n")
+    res.redirect("/index");
+  } else {
+    var queryUrl =
+      "https://api.edamam.com/search?q=" +
+      foodName +
+      "&app_id=" + process.env.Ed_app_id + "&app_key=" + process.env.Ed_app_key;
+    console.log("app_id " + process.env.Ed_app_id);
+    console.log("app_key " + process.env.Ed_app_key)
+    console.log(queryUrl)
+    request(queryUrl, function (error, response, body) {
+      if (!error && JSON.parse(body).response !== "False") {
+        console.log(JSON.parse(body));
 
-  var queryUrl =
-    "https://api.edamam.com/search?q=" +
-    foodName +
-    "&app_id=" + process.env.Ed_app_id + "&app_key=" + process.env.Ed_app_key;
-  console.log("app_id " + process.env.Ed_app_id);
-  console.log("app_key " + process.env.Ed_app_key)
-  console.log(queryUrl)
-  request(queryUrl, function (error, response, body) {
-    if (!error && JSON.parse(body).response !== "False") {
-      console.log(JSON.parse(body));
+        if (error) res.redirect("/index");
 
-      if (error) res.redirect("/index");
-
-      console.log(JSON.parse(body).q);
-      if (!JSON.stringify(response)) {
-        res.redirect("/index");
-      } else {
-        db.Food.create({
-          food_name: JSON.parse(body).q,
-          food_ing: JSON.parse(body).hits[0].recipe.ingredientLines[0],
-          food_poster: JSON.parse(body).hits[0].recipe.image,
-          food_time: JSON.parse(body).hits[0].recipe.totalTime,
-          food_cal: JSON.parse(body).hits[0].recipe.calories,
-          share_as: JSON.parse(body).hits[0].recipe.shareAs
-        }).then(function () {
+        console.log(JSON.parse(body).q);
+        if (!JSON.stringify(response)) {
           res.redirect("/index");
-        });
+        } else {
+          db.Food.create({
+            food_name: JSON.parse(body).q,
+            food_ing: JSON.parse(body).hits[0].recipe.ingredientLines[0],
+            food_poster: JSON.parse(body).hits[0].recipe.image,
+            food_time: JSON.parse(body).hits[0].recipe.totalTime,
+            food_cal: JSON.parse(body).hits[0].recipe.calories,
+            share_as: JSON.parse(body).hits[0].recipe.shareAs
+          }).then(function () {
+            res.redirect("/index");
+          });
+        }
+      } else {
+        console.log(
+          "\nOops...something went wrong with you food search. Try again..."
+        );
+        res.redirect("/index");
       }
-    } else {
-      console.log(
-        "\nOops...something went wrong with you food search. Try again..."
-      );
-      res.redirect("/index");
-    }
-  });
+    });
+  }
 });
 
 // update method to mark that food as saved.

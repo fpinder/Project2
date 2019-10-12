@@ -6,7 +6,9 @@
     <div class="row" id="header_text-box">
         <div class="col-4">
             <a href="/">
-                <img id="logo" src="assets/images/logo.png">
+                <button class="btn success">
+                    <h1><i>EastDB</i></h1>
+                </button>
             </a>
         </div>
 
@@ -14,16 +16,15 @@
 
 
         <div class="col-4" id="add-food">
-            <form action='/api/new/food' method=POST>
-                <input name="name" type="text" class="form-control" id="add-food-input"
-                    placeholder="Search your recipe here!!!">
-                <button id="add-food-button"><img id="add-food-image" src="assets/images/addBtn.jpg"></button>
-            </form>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-2">
-            {{!-- <img id="logo" src="assets/images/logo2.png"> --}}
-        </div>
+
+        </div "col-lg-6">
+        <form action='/api/new/food' method=POST>
+            <input name="name" type="text" class="form-control" id="add-food-input"
+                placeholder="Search your recipe here!!!">
+            <button id="search-food-button">
+                <h1 class="btn2">Search</h1>
+            </button>
+        </form>
     </div>
 </header>
 <main>
@@ -103,8 +104,8 @@
                                 <div class="col-md-3">
                                     <form action="/api/new/saved/{{this.id}}?_method=PUT" method="POST">
                                         <input type="hidden" name="watched" value="true">
-                                        <button type="submit"><img id="watched-food-button"
-                                                src="assets/images/watchedBtn.jpg"></button>
+                                        <button type="submit"><img id="watched-food-button"></button>
+                                        <button class="btn"><i class="fas fa-drumstick-bite"></i> Marke Cooked</button>
                                     </form>
                                 </div>
                                 <!-- Remove food button -->
@@ -112,8 +113,8 @@
                                 <div class="col-md-3">
                                     <form action="/api/new/delete/{{this.id}}?_method=DELETE" method="POST">
                                         <input type="hidden" name="watched" value="true">
-                                        <button type="submit"><img id="delete-food-button"
-                                                src="assets/images/trashItBtn.jpg"></button>
+                                        <button type="submit"><img id="delete-food-button"></button>
+                                        <button class="btn"><i class="fa fa-trash"></i> Delete Menu</button>
                                     </form>
                                 </div>
                                 <div class="col-md-6"></div>

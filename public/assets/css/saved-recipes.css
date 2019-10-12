@@ -11,6 +11,7 @@
   opacity: 0.7;
   display: inline-block;
 }
+
 #watched-movies.img-responsive {
   border: 0;
   float: left;
@@ -21,6 +22,7 @@
   height: auto;
   border: 0;
 }
+
 #unwatch-btn {
   width: 100px;
   border: 0;
@@ -28,6 +30,7 @@
   background-color: rgb(154, 154, 154);
   color: white;
 }
+
 #watched-form {
   border-radius: 0;
   border: none;
@@ -35,5 +38,5 @@
 
 .justify-content-center {
   color: white;
-  background-color: aquamarine;
+  background-color: #40320d;
 }
